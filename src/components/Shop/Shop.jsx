@@ -5,7 +5,7 @@ import Cart from '../Cart/Cart';
 
 const Shop = () => {
     const [products, setProdcucts] = useState([]);
-    const [cart, setCart] = useState([0])
+    const [cart, setCart] = useState([ ])
     useEffect(()=>{
         fetch('../../../fakeData/products.json')
         .then(res =>res.json())
@@ -13,9 +13,11 @@ const Shop = () => {
     },[])
     const addToCartHanler=(product) =>{
         // console.log(' clicked', product);
-        const count = parseInt(cart) + 1;
-        setCart(count ,product)
+        
         // console.log(count)
+        const newCart = [...cart , product];
+        setCart(newCart)
+        console.log(newCart)
     }
     return (
         <div className='shop-container'>
@@ -28,7 +30,7 @@ const Shop = () => {
                 }
             </div>
             <div className="order-section">
-                <h3>Order Summary</h3>
+                <h3 style={{textAlign: 'center'}}>Order Summary</h3>
 
                 <Cart cart ={cart}></Cart>
             </div>
